@@ -9,3 +9,5 @@ DataToIsocor/secret
 DataToIsocor/.Rhistory
 Isocor.Rproj
 .Rproj.user/
+.RData
+.Rhistory

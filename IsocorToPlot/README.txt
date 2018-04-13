@@ -1,1 +1,0 @@
-#Script to generate Barplot and bias with an output file iscocor
