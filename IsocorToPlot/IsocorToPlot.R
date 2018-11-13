@@ -28,7 +28,7 @@ if (!require("data.table")) {
 ###                     Reading data                      ###
 #############################################################
 
-setwd("~/Labo/Donn?es/Script/IsocorToPlot")
+setwd("~/Labo/Data/Script/Isocor/IsocorToPlot")
 file = "Exemple.txt" # txt file
 Samples = 2 # 1 or 2 kind of samples
 Name1 = "MC"
