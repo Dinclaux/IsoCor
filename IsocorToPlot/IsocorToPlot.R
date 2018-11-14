@@ -49,7 +49,7 @@ error.bar <- function(x, y, upper, lower=upper, length=0.1,...){
 #############################################################
 
 setwd("~/Labo/Data/Script/Isocor/IsocorToPlot")
-file = "Exemplev2.tsv" # tsv file
+file = "Example2.tsv" # tsv file
 Samples = 2 # 1 or 2 kind of samples
 Name1 = "MC"
 Name2 = "proteo"
@@ -149,7 +149,7 @@ rm(data,X1,X2,Metabo_X1,Metabo_X2,Theoretical_CID_X1,Theoretical_CID_X2)
 
 #Opening the pdf
 
-file <- gsub(pattern = ".txt" , replacement = "" , file, fixed = TRUE)
+file <- gsub(pattern = ".txt" , replacement = "" , str_sub(file,end=-5), fixed = TRUE)
 tmp <- paste(file,".pdf", sep = "")
 pdf(file = tmp ,onefile= TRUE)
 par(mfrow=c(1,1))

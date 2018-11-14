@@ -1,10 +1,10 @@
-*
+.Rproj.user
 !*/DataToIsocor/DataToIsocor.R
 !*/DataToIsocor/Example.xlsx
 !*/IsocorToPCA/IsocorToPCA.R
 !*/IsocorToPCA/Example.txt
 !*/IsocorToPCA/template.txt
-!*/IsocorToPlot/Examplev2.tsv
+!*/IsocorToPlot/Example2.tsv
 !*/IsocorToPlot/IsocorToPlot.R
 !*/IsocorToPlot/README.md
-.Rproj.user
+*
