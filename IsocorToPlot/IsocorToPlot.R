@@ -1,10 +1,21 @@
 #2018-11-12 dinclaux@insa-toulouse.fr
 
 #Script to generate Barplot and bias with an output file iscocor 2.X.X
-#
+
 
 # Reinitialize the session
 rm(list=ls(all=TRUE))
+
+#############################################################
+###                     Reading data                      ###
+#############################################################
+
+setwd("~/Labo/Data/Script/Isocor/IsocorToPlot")
+file = "Data_example.tsv" # tsv file
+Samples = 2 # 1 or 2 kind of samples
+Name1 = "MC"
+Name2 = "proteo"
+p = 0.499  # 13C enrichment
 
 #########################################################
 ###       Installing and loading required packages    ###
@@ -20,7 +31,6 @@ if (!require("RColorBrewer")){
   install.packages("RColorBrewer", dependencies = TRUE)
   library(RColorBrewer)
 }
-
 
 if (!require("gtools")){
   install.packages("gtools", dependencies = TRUE)
@@ -44,16 +54,6 @@ error.bar <- function(x, y, upper, lower=upper, length=0.1,...){
   arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
   #turn off warning messages 
 }
-#############################################################
-###                     Reading data                      ###
-#############################################################
-
-setwd("~/Labo/Data/Script/Isocor/IsocorToPlot")
-file = "Example2.tsv" # tsv file
-Samples = 2 # 1 or 2 kind of samples
-Name1 = "MC"
-Name2 = "proteo"
-p = 0.499  # 13C enrichment
 
 
 #############################################################
@@ -109,9 +109,9 @@ if(length(tmp)>0){
   for(i in tmp){
     t <- rbind(t,subset(Metabo_X1,Metabo_X1[,1] == i ))
   }
-  t <- cbind(t,matrix(data=0,nrow=nrow(t), ncol=(ncol(X2)-2)))
+  Metabo_X2 <- rbind(Metabo_X2,t)
+  X2 <- rbind(X2,matrix(data=0, nrow = nrow(t), ncol = ncol(X2)))
 }
-X2 <- rbind(X2,t)
 
 #Theoretical CID
 Theoretical_CID_X1=c()
@@ -151,8 +151,8 @@ rm(data,X1,X2,Metabo_X1,Metabo_X2,Theoretical_CID_X1,Theoretical_CID_X2)
 
 file <- gsub(pattern = ".txt" , replacement = "" , str_sub(file,end=-5), fixed = TRUE)
 tmp <- paste(file,".pdf", sep = "")
-pdf(file = tmp ,onefile= TRUE)
-par(mfrow=c(1,1))
+pdf(file = tmp ,onefile= TRUE, width = 15)
+par(mfrow=c(1,2))
 
 for (nm in nmu) {
   for (var in Samplesplot){
@@ -225,6 +225,7 @@ for (nm in nmu) {
                     main = c(nm,var),
                     legend = rownames(res),
                     names.arg =meta$isotopologues[ind],
+                    ylim = c(0,1.1* max(apply(res, 1, max))),
                     col = c("#FFFF00",cols[1:(nrow(res)-1)]),
                     args.legend = list("topright", cex = 0.7,bty = "n"))
     
@@ -234,3 +235,4 @@ for (nm in nmu) {
 }
 
 dev.off()
+
