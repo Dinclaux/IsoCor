@@ -10,10 +10,10 @@ rm(list=ls(all=TRUE))
 ###                     Reading data                      ###
 #############################################################
 
-setwd("~/Labo/Data/Script/Isocor/IsocorToPlot")
-file = "Data_example.tsv" # tsv file
-Samples = 2 # 1 or 2 kind of samples
-Name1 = "MC"
+setwd("C:/Users/mdinclaux/Documents/Script/Metasys/Isocor/IsocorToPlot")
+file = "20200324_PT_2017vs2020_MC_FULL_FLUX_res.tsv" # tsv file
+Samples = 1 # 1 or 2 kind of samples
+Name1 = "Intra"
 Name2 = "proteo"
 p = 0.499  # 13C enrichment
 
@@ -208,7 +208,7 @@ for (nm in nmu) {
       if ((length(e))>1){
         mi=apply(meta[,(e+2)], 1, sd)
       }else{
-        mi=meta[,(e+2)]
+        mi=NA
       }
       bias[,i]=mi
     }
@@ -225,7 +225,7 @@ for (nm in nmu) {
                     main = c(nm,var),
                     legend = rownames(res),
                     names.arg =meta$isotopologues[ind],
-                    ylim = c(0,1.1* max(apply(res, 1, max))),
+                    ylim = c(0,1.2* max(apply(res, 1, max))),
                     col = c("#FFFF00",cols[1:(nrow(res)-1)]),
                     args.legend = list("topright", cex = 0.7,bty = "n"))
     
